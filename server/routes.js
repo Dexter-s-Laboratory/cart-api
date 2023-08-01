@@ -1,12 +1,21 @@
 var controller = require('./controllers');
 var router = require('express').Router();
 
-//Connect controller methods to their corresponding routes
-router.get('/example/:product_id', controller.example.get);
+// GET /api/om/carts/:user_id (authentication required)
+router.get('/om/carts/:user_id', controller.getCartByUserId);
 
-router.post('/example', controller.example.post);
+// POST /api/om/transactions/ (authentication required)
+// Creates transaction record and updates each listing to be completed and adds the transaction ID
+router.post('/om/transactions', controller.createTransaction);
 
-router.get('/', controller.rootJestTest.get)
+// GET /api/om/transactions/:transaction_id (authentication required)
+router.get('/om/transactions/:transcation_id', controller.getTransactionById);
+
+// GET /api/om/transactions/:user_id/purchases (authentication required)
+router.get('/om/transactions/:user_id/purchases', controller.getPurchasesByUserId);
+
+// GET /api/om/transactions/:user_id/sales (authentication required)
+router.get('/om/transactions/:user_id/sales', controller.getSalesByUserId);
 
 module.exports = router;
 
