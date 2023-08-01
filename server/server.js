@@ -11,8 +11,7 @@ const { decodeToken } = require('./middleware');
 app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-// app.use(decodeToken);
-// commented for testing solely routes without auth
+app.use(decodeToken);
 
 app.get('/test', (req, res) => {
   res.send('hello order management world');

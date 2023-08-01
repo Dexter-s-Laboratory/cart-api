@@ -2,7 +2,7 @@ const model = require('../models');
 
 module.exports = {
   getCartByUserId: async(req, res) => {
-    const{user_id} = req.params;
+    const{user_id} = req.headers;
     try {
       const result = await model.getCartByUserIdFromDB(user_id)
       res.send(result);
