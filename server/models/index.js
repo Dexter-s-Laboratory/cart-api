@@ -1,1 +1,25 @@
-exports.example = require ('./example.js');
+const db = require('../db');
+
+module.exports = {
+
+  getCartByUserIdFromDB: () => {
+
+  },
+
+  createTransactionInDB: () => {
+
+  },
+
+  getTransactionByIdFromDB: () => {
+
+  },
+
+  getPurchasesByUserIdFromDB: () => {
+
+  },
+
+  getSalesByUserIdFromDB: () => {
+
+  },
+
+};
