@@ -11,8 +11,13 @@ module.exports = {
     }
   },
 
-  createTransactionInDB: () => {
-
+  createTransactionInDB: async (user_id) => {
+    try {
+      const listingsInCart = await db.any('SELECT * FROM transactions WHERE user_id =$1', [user_id]);
+      return listingsInCart;
+    } catch(error) {
+      console.log('unable to retrieve listings, ', error);
+    }
   },
 
   getTransactionByIdFromDB: () => {
