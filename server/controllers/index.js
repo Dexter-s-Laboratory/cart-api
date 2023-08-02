@@ -14,9 +14,10 @@ module.exports = {
   createTransaction: async (req, res) => {
 
     const{user_id} = req.headers;
+    const{total_amount} = req.body;
 
     try {
-      const result = await model.createTransactionInDB(user_id);
+      const result = await model.createTransactionInDB(user_id, total_amount);
       res.send(result);
     } catch(error) {
       res.status(404).send(error);
