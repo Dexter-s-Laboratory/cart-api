@@ -14,10 +14,10 @@ router.post('/om/transactions', controller.createTransaction);
 router.get('/om/transactions/:transaction_id', controller.getTransactionById);
 
 // GET /api/om/transactions/purchases (authentication required)
-router.get('/om/transactions/purchases', controller.getPurchasesByUserId);
+router.get('/om/purchases', controller.getPurchasesByUserId);
 
 // GET /api/om/transactions/sales (authentication required)
-router.get('/om/transactions/sales', controller.getSalesByUserId);
+router.get('/om/sales', controller.getSalesByUserId);
 
 module.exports = router;
 

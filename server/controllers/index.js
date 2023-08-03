@@ -15,7 +15,7 @@ module.exports = {
       const{user_id} = req.headers;
       const{listing_id} = req.body;
       const confirm = await model.createItemInCartDB(user_id, listing_id);
-      res.send(confirm);
+      res.status(201).send(confirm);
     }catch(error) {
       res.status(404).send(error);
     }
@@ -56,7 +56,7 @@ module.exports = {
   getSalesByUserId: async(req, res) => {
     const{user_id} = req.headers;
     try {
-      const sales = await model.getSalesByUserId(user_id);
+      const sales = await model.getSalesByUserIdFromDB(user_id);
       res.send(sales);
     } catch(error) {
       res.status(404).send(error);
