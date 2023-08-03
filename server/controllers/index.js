@@ -21,6 +21,17 @@ module.exports = {
     }
   },
 
+  deleteItemInCart: async(req, res) => {
+    try {
+      const{user_id} = req.headers;
+      const{listing_id} = req.params;
+      const confirm = await model.deleteItemInCartDB(user_id, listing_id);
+      res.status(200).send(confirm);
+    }catch(error) {
+      res.status(404).send(error);
+    }
+  },
+
   createTransaction: async (req, res) => {
 
     const{user_id} = req.headers;

@@ -18,6 +18,15 @@ module.exports = {
     }
   },
 
+  deleteItemInCartDB: async(user_id, listing_id) => {
+    try {
+      const confirm = await db.any('DELETE FROM carts WHERE user_id =$1 AND listing_id=$2', [user_id, listing_id]);
+      return confirm;
+    } catch(error) {
+      console.log('unable to create cart item, ', error);
+    }
+  },
+
   createTransactionInDB: async (buyer_id, total_amount, listing_ids) => {
     const status = 'fulfilled';
     try {

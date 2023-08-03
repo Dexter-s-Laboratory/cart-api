@@ -6,6 +6,8 @@ router.get('/om/cart', controller.getCartByUserId);
 
 router.post('/om/cart', controller.createItemInCart);
 
+router.delete('/om/cart/:listing_id', controller.deleteItemInCart);
+
 // POST /api/om/transactions/ (authentication required)
 // Creates transaction record and updates each listing to be completed and adds the transaction ID
 router.post('/om/transactions', controller.createTransaction);
