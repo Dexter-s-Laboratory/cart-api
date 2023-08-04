@@ -28,7 +28,8 @@ module.exports = {
           if (!result[0].id) {
             res.status(404).end();
           } else {
-            req.headers.userId = result[0].id;
+            req.headers.user_id = result[0].id;
+            next();
           }
       })
       .catch((err) => {
