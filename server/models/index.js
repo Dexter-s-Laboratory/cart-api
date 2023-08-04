@@ -3,7 +3,7 @@ const db = require('../db');
 module.exports = {
   getCartByUserIdFromDB: async (user_id) => {
     try {
-      const listingsInCart = await db.any('SELECT listings.* , product_info.* FROM listings JOIN carts ON listings.id = carts.listing_id JOIN (SELECT products.id AS product_id, products.product_name FROM products) AS product_info ON listings.product_id = product_info.product_id WHERE carts.user_id = $1', [user_id]);
+      const listingsInCart = await db.any('SELECT listings.* , products.product_name, products.photo_url FROM listings JOIN carts ON listings.id = carts.listing_id JOIN products ON listings.product_id = products.id WHERE carts.user_id = $1', [user_id]);
       return listingsInCart;
     } catch(error) {
       console.log('unable to retrieve cart, ', error);
