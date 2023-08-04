@@ -52,7 +52,7 @@ module.exports = {
 
   getPurchasesByUserIdFromDB: async(user_id) => {
     try {
-      const purchases  = await db.any('SELECT listings.* FROM listings JOIN transactions ON transactions.id = listings.transaction_id WHERE transactions.buyer_id = $1', [user_id]);
+      const purchases  = await db.any('SELECT listings.*, products.product_name FROM listings JOIN transactions ON transactions.id = listings.transaction_id JOIN products ON products.id = listings.product_id WHERE transactions.buyer_id = $1', [user_id]);
       return purchases;
     } catch(error) {
       console.log('unable to retrieve purchases, ', error);
