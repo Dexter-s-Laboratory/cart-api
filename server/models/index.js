@@ -30,9 +30,10 @@ module.exports = {
   createTransactionInDB: async (buyer_id, total_amount, listing_ids) => {
     const status = 'fulfilled';
     try {
-      const insertTransaction = await db.any('INSERT INTO transactions (buyer_id, total_amount) VALUES ($1, $2)', [buyer_id,total_amount ]);
-      const transaction_id  = await db.any('SELECT id FROM transactions WHERE buyer_id = $1', [buyer_id]);
-      const updateListing = await db.any(`UPDATE listing SET transaction_id = $1, status = $2 WHERE id = ANY($3)`, [transaction_id, status, listing_ids]);
+      const insertTransaction = await db.any('INSERT INTO transactions (buyer_id, total_amount) VALUES ($1, $2)', [buyer_id,total_amount]);
+      let transaction_id = await db.any('SELECT id FROM transactions WHERE buyer_id = $1', [buyer_id]);
+      transaction_id = transaction_id[transaction_id.length -1].id;
+      const updateListing = await db.any(`UPDATE listings SET transaction_id = $1, status = $2 WHERE id = ANY($3)`, [transaction_id, status, listing_ids]);
       return updateListing;
     } catch(error) {
       console.log('unable to create listings, ', error);
